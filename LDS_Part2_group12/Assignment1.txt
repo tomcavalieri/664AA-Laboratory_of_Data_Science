@@ -1,0 +1,29 @@
+vendor_name,ram_brand
+Adorama,CRUCIAL
+Aquila Technology,KINGSTON
+Aria PC,CORSAIR
+Ascent Technology,KINGSTON
+AWD-IT,CORSAIR
+AX86 Gaming Systems,CORSAIR
+B H,CRUCIAL
+Best Buy,CORSAIR
+Box Limited,KINGSTON
+Centre Com,CORSAIR
+Computer Lounge,CORSAIR
+Corsair,CORSAIR
+Corsair DE,CORSAIR
+Corsair UK,CORSAIR
+Dell Small Business,KINGSTON
+Directron,CRUCIAL
+Electronicamente,KINGSTON
+Newegg Australia,G.SKILL
+Paradigm PCs,KINGSTON
+PC World,CORSAIR
+PC World Business,KINGSTON
+PCM,KINGSTON
+RamCity,CRUCIAL
+Scan.co.uk,CORSAIR
+Shopping Express,CORSAIR
+Storm Computers,CORSAIR
+SuperBiiz,KINGSTON
+YoYoTech,CRUCIAL

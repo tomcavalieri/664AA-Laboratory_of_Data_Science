@@ -1,0 +1,33 @@
+-- ASSIGNMENT 1
+-- Show the ratio between weekdays sales and weekend sales for each month and cpu brand.
+WITH MEMBER weekday_sales AS
+SUM([Time].[Day Of Week].&[Monday]:[Time].[Day Of Week].&[Friday], [Measures].[Sales Usd])
+MEMBER weekend_sales AS
+SUM([Time].[Day Of Week].&[Saturday]:[Time].[Day Of Week].&[Sunday], [Measures].[Sales Usd])
+MEMBER ratio AS
+weekday_sales / weekend_sales
+select ratio on columns,
+([Time].[TimeByDay].[Month Str], [Cpu Product].[Brand].[Brand]) on rows
+from [CPU Sales]
+
+
+-- ASSIGNMENT 2
+-- For each vendor, show the difference between the total sales of each month and the
+-- total sales of the previous month.
+WITH MEMBER diff AS
+[Measures].[Sales Usd] - ([Time].[TimeByDay].currentmember.lag(1) , [Measures].[Sales Usd])
+select diff on columns,
+nonempty (([Vendor].[Vendor_Name].[Vendor_Name], [Time].[TimeByDay].[Month Str], [Time].[Year].[Year]))  on rows
+from [CPU Sales]
+
+
+-- ASSIGNMENT 3
+-- For each country show the cpu series with the highest total sales and the sales ratio
+-- between that cpu series and the total sales for that country
+WITH member sales_per_country as ([Cpu Product].[Series].[All], [Measures].[Sales Usd]) 
+MEMBER perc AS [Measures].[Sales Usd]/sales_per_country,
+FORMAT_STRING="Percent" 
+SELECT {[Measures].[Sales Usd],sales_per_country,perc} on columns, 
+{Generate(nonempty(([Geography].[GeographyByRegion].[Country], [Cpu Product].[Series])),
+topcount(([Geography].[GeographyByRegion].currentmember, [Cpu Product].[Series].children), 1, [Measures].[Sales Usd]))} on rows
+FROM [CPU Sales]
